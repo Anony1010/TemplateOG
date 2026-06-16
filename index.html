@@ -5,353 +5,277 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TemplateOG</title>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #f0f2f5;
-    color: #1a1a2e;
-    min-height: 100vh;
-  }
-  header {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-    color: white;
-    text-align: center;
-    padding: 2.5rem 1rem;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-  }
-  header h1 {
-    font-size: 3.5rem;
-    font-weight: 800;
-    letter-spacing: 3px;
-    background: linear-gradient(90deg, #e94560, #f5a623, #e94560);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: shimmer 3s ease-in-out infinite;
-  }
-  @keyframes shimmer {
-    0%, 100% { background-position: 0% center; }
-    50% { background-position: 100% center; }
-  }
-  header p { margin-top: 0.5rem; font-size: 1.1rem; opacity: 0.85; font-weight: 300; }
-  .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1rem 4rem; }
-  .section-desc { text-align: center; font-size: 1.1rem; color: #555; margin-bottom: 2rem; line-height: 1.6; }
-  .template-grid { display: flex; flex-direction: column; gap: 1rem; }
-  .template-card {
-    background: white; border-radius: 14px; box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    overflow: hidden; transition: box-shadow 0.3s; border: 1px solid #e8ecf0;
-  }
-  .template-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.1); }
-  .template-header {
-    padding: 1.2rem 1.5rem; cursor: pointer; display: flex; justify-content: space-between;
-    align-items: center; background: #fafbfc; border-bottom: 1px solid #e8ecf0;
-    transition: background 0.2s; user-select: none;
-  }
-  .template-header:hover { background: #f0f2f5; }
-  .template-header .number {
-    display: inline-block; width: 32px; height: 32px; background: #0f3460; color: white;
-    border-radius: 50%; text-align: center; line-height: 32px;
-    font-size: 0.85rem; font-weight: 700; margin-right: 12px; flex-shrink: 0;
-  }
-  .template-header .title-group { display: flex; align-items: center; gap: 8px; flex: 1; flex-wrap: wrap; }
-  .template-header .title-main { font-size: 1.1rem; font-weight: 600; color: #1a1a2e; }
-  .template-header .title-sub { font-size: 0.9rem; color: #888; font-weight: 400; }
-  .template-header .lang-indicators { display: flex; gap: 6px; }
-  .template-header .lang-badge { font-size: 0.7rem; padding: 2px 8px; border-radius: 20px; font-weight: 600; text-transform: uppercase; }
-  .lang-badge.en { background: #e3f2fd; color: #1565c0; }
-  .lang-badge.az { background: #fce4ec; color: #c62828; }
-  .template-header .arrow { font-size: 1.2rem; color: #999; transition: transform 0.3s; margin-left: 10px; }
-  .template-card.open .arrow { transform: rotate(180deg); }
-  .template-body { max-height: 0; overflow: hidden; transition: max-height 0.5s ease, padding 0.3s ease; padding: 0 1.5rem; }
-  .template-card.open .template-body { max-height: 2500px; padding: 1.5rem; }
-  .lang-section { margin-bottom: 1.5rem; }
-  .lang-section:last-child { margin-bottom: 0; }
-  .lang-section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; }
-  .lang-section-header .lang-label { font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
-  .lang-section-header .lang-label.en-label { color: #1565c0; }
-  .lang-section-header .lang-label.az-label { color: #c62828; }
-  .copy-btn {
-    display: inline-flex; align-items: center; gap: 5px; padding: 6px 14px; border: none;
-    border-radius: 8px; cursor: pointer; font-size: 0.8rem; font-weight: 600;
-    transition: all 0.2s; background: #e8ecf0; color: #333;
-  }
-  .copy-btn:hover { background: #d0d4d8; }
-  .copy-btn.copied { background: #4caf50; color: white; }
-  .copy-btn svg { width: 14px; height: 14px; }
-  .email-content {
-    background: #f8f9fb; border-radius: 10px; padding: 1.2rem; font-size: 0.95rem;
-    line-height: 1.7; white-space: pre-wrap; font-family: 'Courier New', Courier, monospace;
-    border: 1px solid #e8ecf0; color: #2c3e50;
-  }
-  .footer { text-align: center; padding: 2rem; color: #888; font-size: 0.85rem; }
-  @media (max-width: 600px) {
-    header h1 { font-size: 2.4rem; }
-    .template-header .title-main { font-size: 1rem; }
-    .email-content { font-size: 0.85rem; padding: 0.9rem; }
-    .template-body { padding: 0 1rem; }
-    .template-card.open .template-body { padding: 1rem; }
-  }
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f0f2f5;color:#1a1a2e;min-height:100vh}
+header{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);color:white;text-align:center;padding:2.5rem 1rem;box-shadow:0 4px 20px rgba(0,0,0,0.15)}
+header h1{font-size:3.5rem;font-weight:800;letter-spacing:3px;background:linear-gradient(90deg,#e94560,#f5a623,#e94560);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 3s ease-in-out infinite}
+@keyframes shimmer{0%,100%{background-position:0% center}50%{background-position:100% center}}
+header p{margin-top:0.5rem;font-size:1.1rem;opacity:0.85;font-weight:300}
+.container{max-width:1100px;margin:0 auto;padding:2rem 1rem 4rem}
+.section-desc{text-align:center;font-size:1.1rem;color:#555;margin-bottom:2rem;line-height:1.6}
+.template-grid{display:flex;flex-direction:column;gap:1rem}
+.template-card{background:white;border-radius:14px;box-shadow:0 2px 12px rgba(0,0,0,0.06);overflow:hidden;border:1px solid #e8ecf0}
+.template-card:hover{box-shadow:0 6px 24px rgba(0,0,0,0.1)}
+.template-header{padding:1.2rem 1.5rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;background:#fafbfc;border-bottom:1px solid #e8ecf0;user-select:none}
+.template-header:hover{background:#f0f2f5}
+.template-header .num{display:inline-flex;width:32px;height:32px;background:#0f3460;color:white;border-radius:50%;align-items:center;justify-content:center;font-size:0.85rem;font-weight:700;margin-right:12px;flex-shrink:0}
+.template-header .tg{display:flex;align-items:center;gap:8px;flex:1;flex-wrap:wrap}
+.template-header .tm{font-size:1.1rem;font-weight:600;color:#1a1a2e}
+.template-header .ts{font-size:0.9rem;color:#888;font-weight:400}
+.template-header .lang{display:flex;gap:6px}
+.template-header .lb{font-size:0.7rem;padding:2px 8px;border-radius:20px;font-weight:600;text-transform:uppercase}
+.lb.en{background:#e3f2fd;color:#1565c0}
+.lb.az{background:#fce4ec;color:#c62828}
+.template-header .ar{font-size:1.2rem;color:#999;transition:transform 0.3s;margin-left:10px}
+.open .ar{transform:rotate(180deg)}
+.tb{max-height:0;overflow:hidden;transition:max-height 0.5s ease,padding 0.3s ease;padding:0 1.5rem}
+.open .tb{max-height:3000px;padding:1.5rem}
+.ls{margin-bottom:1.5rem}
+.ls:last-child{margin-bottom:0}
+.lsh{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.6rem}
+.lsh .ll{font-weight:700;font-size:0.85rem;text-transform:uppercase;letter-spacing:1px}
+.lsh .ll.enl{color:#1565c0}
+.lsh .ll.azl{color:#c62828}
+.cb{display:inline-flex;align-items:center;gap:5px;padding:6px 14px;border:none;border-radius:8px;cursor:pointer;font-size:0.8rem;font-weight:600;background:#e8ecf0;color:#333}
+.cb:hover{background:#d0d4d8}
+.cb.ok{background:#4caf50;color:white}
+.cb svg{width:14px;height:14px}
+.ec{background:#f8f9fb;border-radius:10px;padding:1.2rem;font-size:0.95rem;line-height:1.7;white-space:pre-wrap;font-family:'Courier New',Courier,monospace;border:1px solid #e8ecf0;color:#2c3e50}
+.ft{text-align:center;padding:2rem;color:#888;font-size:0.85rem}
+@media(max-width:600px){header h1{font-size:2.4rem}.tm{font-size:1rem}.ec{font-size:0.85rem;padding:0.9rem}.tb{padding:0 1rem}.open .tb{padding:1rem}}
 </style>
 </head>
 <body>
-<header>
-  <h1>TemplateOG</h1>
-  <p>Professional Email Templates for Daily Operations</p>
-</header>
+<header><h1>TemplateOG</h1><p>Professional Email Templates for Daily Operations</p></header>
 <div class="container">
-  <p class="section-desc">
-    Aşağıdakı mətn qurucuları PDF-də olan eyni məlumatları əks etdirir.<br>
-    Hər bir <strong>Ümumi Başlıq</strong> altında İngilis və Azərbaycan dillərində template-lər yerləşir.<br>
-    Template-in üzərinə klikləyin, tam mətni oxuyun və <strong>Kopyala</strong> düyməsi ilə köçürün.
-  </p>
-  <div class="template-grid" id="templateGrid"></div>
+<p class="section-desc">Aşağıdakı mətn qurucuları PDF-də olan məlumatları əks etdirir.<br>Hər bir başlıq altında İngilis və Azərbaycan dillərində template yerləşir.<br>Template-i klikləyin, tam mətni oxuyun və <strong>Kopyala</strong> düyməsi ilə köçürün.</p>
+<div id="grid" class="template-grid"></div>
 </div>
-<div class="footer">TemplateOG &mdash; Professional Email Templates</div>
+<div class="ft">TemplateOG &mdash; Professional Email Templates</div>
 <script>
-var templates = [
+var DATA = [
   {
-      {
-    id: 1,
-    title: 'Alternative Item Proposal',
-    titleAz: 'Alternativ Detal Təklifi',
-    en: 'Subject: Alternative Item Proposal\n\nDear Sir/Madam,\n\nPlease confirm if an alternative part is acceptable for your requirement.\n\nWe look forward to your feedback.\n\nBest regards,\n[Your Name]\n[Company Name]',
-    az: 'Mövzu: Alternativ Detal Təklifi\n\nHörmətli cənab/xanım,\n\nAlternativ hissənin tələbinizə uyğun olub-olmadığını təsdiqləməyinizi xahiş edirik.\n\nRəyinizi gözləyirik.\n\nHörmətlə,\n[Adınız]\n[Şirkət Adı]'
+    "id": 1,
+    "title": "Alternative Item Proposal",
+    "titleAz": "Alternativ Detal Təklifi",
+    "en": "Subject: Alternative Item Proposal\n\nDear Sir/Madam,\n\nPlease confirm if an alternative part is acceptable for your requirement.\n\nWe look forward to your feedback.\n\nBest regards,\n[Your Name]\n[Company Name]",
+    "az": "Mövzu: Alternativ Detal Təklifi\n\nHörmətli cənab/xanım,\n\nAlternativ hissənin tələbinizə uyğun olub-olmadığını təsdiqləməyinizi xahiş edirik.\n\nRəyinizi gözləyirik.\n\nHörmətlə,\n[Adınız]\n[Şirkət Adı]"
   },
   {
-    id: 2,
-    title: 'RFQ – Request for Quotation',
-    titleAz: 'Qiymət Təklifi Sorğusu',
-    en: 'Subject: Request for Quotation\n\nDear Sir/Madam,\n\nWe kindly request your quotation for the following item(s):\n\nItem:\nPart Number:\nManufacturer:\nQuantity:\n\nPlease include the following information in your offer:\n• Unit Price and Total Price\n• Stock Availability\n• Delivery / Lead Time\n• Payment Terms\n• Validity of Offer\n\nWe would appreciate receiving your quotation at your earliest convenience and look forward to your response.\n\nBest Regards,\n[Name]',
-    az: 'Mövzu: Qiymət Təklifi Sorğusu\n\nHörmətli cənab/xanım,\n\nAşağıda qeyd olunan məhsul(lar) üzrə qiymət təklifinizi təqdim etməyinizi xahiş edirik:\n\nMəhsul:\nPart Nömrəsi:\nİstehsalçı:\nMiqdar:\n\nZəhmət olmasa təklifinizdə aşağıdakı məlumatları qeyd edin:\n• Vahid və ümumi qiymət\n• Stok mövcudluğu\n• Çatdırılma müddəti\n• Ödəniş şərtləri\n• Təklifin qücvvdə olma müddəti\n\nTəklifinizi ən qısa zamanda almağı ümid edir və əməkdaşlığınıza görə təşəkkür edirik.\n\nHörmətlə,\n[Ad]'
+    "id": 2,
+    "title": "RFQ – Request for Quotation",
+    "titleAz": "Qiymət Təklifi Sorğusu",
+    "en": "Subject: Request for Quotation\n\nDear Sir/Madam,\n\nWe kindly request your quotation for the following item(s):\n\nItem:\nPart Number:\nManufacturer:\nQuantity:\n\nPlease include the following information in your offer:\n• Unit Price and Total Price\n• Stock Availability\n• Delivery / Lead Time\n• Payment Terms\n• Validity of Offer\n\nWe would appreciate receiving your quotation at your earliest convenience and look forward to your response.\n\nBest Regards,\n[Name]",
+    "az": "Mövzu: Qiymət Təklifi Sorğusu\n\nHörmətli cənab/xanım,\n\nAşağıda qeyd olunan məhsul(lar) üzrə qiymət təklifinizi təqdim etməyinizi xahiş edirik:\n\nMəhsul:\nPart Nömrəsi:\nİstehsalçı:\nMiqdar:\n\nZəhmət olmasa təklifinizdə aşağıdakı məlumatları qeyd edin:\n• Vahid və ümumi qiymət\n• Stok mövcudluğu\n• Çatdırılma müddəti\n• Ödəniş şərtləri\n• Təklifin qüvvədə olma müddəti\n\nTəklifinizi ən qısa zamanda almağı ümid edir və əməkdaşlığınıza görə təşəkkür edirik.\n\nHörmətlə,\n[Ad]"
   },
   {
-    id: 3,
-    title: 'Best Price Request',
-    titleAz: 'Ən Yaxşı Qiymət Tələbi',
-    en: 'Subject: Request for Best Commercial Price\n\nDear Sir/Madam,\n\nThank you for your quotation and continued support.\n\nAfter reviewing your offer, we kindly ask you to reconsider the pricing and provide your best possible commercial offer. This will support our internal evaluation and approval process.\n\nWe look forward to your revised quotation.\n\nBest Regards,\n[Name]',
-    az: 'Mövzu: Ən Yaxşı Qiymət Tələbi\n\nHörmətli cənab/xanım,\n\nTəklifiniz və əməkdaşlığınız üçün təşəkkür edirik.\n\nTəklifiniz nəzərdən keçirilmişdir. Qiymətin yenidən qiymətləndirilməsini və mümkün olan ən sərfəli kommersiya təklifinizi təqdim etməyinizi xahiş edirik.\n\nYenilənmiş təklifinizi gözləyirik.\n\nHörmətlə,\n[Ad]'
+    "id": 3,
+    "title": "Best Price Request",
+    "titleAz": "Ən Yaxşı Qiymət Tələbi",
+    "en": "Subject: Request for Best Commercial Price\n\nDear Sir/Madam,\n\nThank you for your quotation and continued support.\n\nAfter reviewing your offer, we kindly ask you to reconsider the pricing and provide your best possible commercial offer. This will support our internal evaluation and approval process.\n\nWe look forward to your revised quotation.\n\nBest Regards,\n[Name]",
+    "az": "Mövzu: Ən Yaxşı Qiymət Tələbi\n\nHörmətli cənab/xanım,\n\nTəklifiniz və əməkdaşlığınız üçün təşəkkür edirik.\n\nTəklifiniz nəzərdən keçirilmişdir. Qiymətin yenidən qiymətləndirilməsini və mümkün olan ən sərfəli kommersiya təklifinizi təqdim etməyinizi xahiş edirik.\n\nYenilənmiş təklifinizi gözləyirik.\n\nHörmətlə,\n[Ad]"
   },
   {
-    id: 4,
-    title: 'Final Commercial Offer Request',
-    titleAz: 'Son Qiymət Təklifi',
-    en: 'Subject: Final Commercial Offer Request\n\nDear Sir/Madam,\n\nWe hope you are doing well.\n\nThis email is regarding final commercial offer request. We kindly request the relevant information, confirmation, update, or action required from your side at your earliest convenience.\n\nYour prompt support will help us proceed with our internal process efficiently. Should you require any additional information, please do not hesitate to contact us.\n\nThank you for your cooperation and we look forward to your response.\n\nBest Regards,\n[Name]',
-    az: 'Mövzu: Son Qiymət Təklifi\n\nHörmətli cənab/xanım,\n\nÜmid edirik ki, hər şey qaydasındadır.\n\nBu məktub son qiymət təklifi ilə bağlıdır. Müvafiq məlumatı, təsdiqi və ya tələb olunan tədbiri mümkün qədər tez təqdim etməyinizi xahiş edirik.\n\nOperativ dəstəyiniz daxili proseslərimizin vaxtında icrasına kömək edəcəkdir. Əlavə məlumata ehtiyacınız olarsa bizimlə əlaqə saxlaya bilərsiniz.\n\nƏməkdaşlığınıza görə təşəkkür edir və cavabınızı gözləyirik.\n\nHörmətlə,\n[Ad]'
+    "id": 4,
+    "title": "Final Commercial Offer Request",
+    "titleAz": "Son Qiymət Təklifi",
+    "en": "Subject: Final Commercial Offer Request\n\nDear Sir/Madam,\n\nWe hope you are doing well.\n\nThis email is regarding final commercial offer request. We kindly request the relevant information, confirmation, update, or action required from your side at your earliest convenience.\n\nYour prompt support will help us proceed with our internal process efficiently. Should you require any additional information, please do not hesitate to contact us.\n\nThank you for your cooperation and we look forward to your response.\n\nBest Regards,\n[Name]",
+    "az": "Mövzu: Son Qiymət Təklifi\n\nHörmətli cənab/xanım,\n\nÜmid edirik ki, hər şey qaydasındadır.\n\nBu məktub son qiymət təklifi ilə bağlıdır. Müvafiq məlumatı, təsdiqi və ya tələb olunan tədbiri mümkün qədər tez təqdim etməyinizi xahiş edirik.\n\nOperativ dəstəyiniz daxili proseslərimizin vaxtında icrasına kömək edəcəkdir. Əlavə məlumata ehtiyacınız olarsa bizimlə əlaqə saxlaya bilərsiniz.\n\nƏməkdaşlığınıza görə təşəkkür edir və cavabınızı gözləyirik.\n\nHörmətlə,\n[Ad]"
   },
   {
-    id: 5,
-    title: 'Delivery Time Inquiry',
-    titleAz: 'Çatdırılma Müddəti Sorğusu',
-    en: 'Subject: Delivery Time Inquiry\n\nDear Sir/Madam,\n\nWe hope you are doing well.\n\nThis email is regarding delivery time inquiry. We kindly request the relevant information, confirmation, update, or action required from your side at your earliest convenience.\n\nYour prompt support will help us proceed with our internal process efficiently. Should you require any additional information, please do not hesitate to contact us.\n\nThank you for your cooperation and we look forward to your response.\n\nBest Regards,\n[Name]',
-    az: 'Mövzu: Çatdırılma Müddəti Sorğusu\n\nHörmətli cənab/xanım,\n\nÜmid edirik ki, hər şey qaydasındadır.\n\nBu məktub çatdırılma müddəti sorğusu ilə bağlıdır. Müvafiq məlumatı, təsdiqi və ya tələb olunan tədbiri mümkün qədər tez təqdim etməyinizi xahiş edirik.\n\nOperativ dəstəyiniz daxili proseslərimizin vaxtında icrasına kömək edəcəkdir. Əlavə məlumata ehtiyacınız olarsa bizimlə əlaqə saxlaya bilərsiniz.\n\nƏməkdaşlığınıza görə təşəkkür edir və cavabınızı gözləyirik.\n\nHörmətlə,\n[Ad]'
+    "id": 5,
+    "title": "Delivery Time Inquiry",
+    "titleAz": "Çatdırılma Müddəti Sorğusu",
+    "en": "Subject: Delivery Time Inquiry\n\nDear Sir/Madam,\n\nWe hope you are doing well.\n\nThis email is regarding delivery time inquiry. We kindly request the relevant information, confirmation, update, or action required from your side at your earliest convenience.\n\nYour prompt support will help us proceed with our internal process efficiently. Should you require any additional information, please do not hesitate to contact us.\n\nThank you for your cooperation and we look forward to your response.\n\nBest Regards,\n[Name]",
+    "az": "Mövzu: Çatdırılma Müddəti Sorğusu\n\nHörmətli cənab/xanım,\n\nÜmid edirik ki, hər şey qaydasındadır.\n\nBu məktub çatdırılma müddəti sorğusu ilə bağlıdır. Müvafiq məlumatı, təsdiqi və ya tələb olunan tədbiri mümkün qədər tez təqdim etməyinizi xahiş edirik.\n\nOperativ dəstəyiniz daxili proseslərimizin vaxtında icrasına kömək edəcəkdir. Əlavə məlumata ehtiyacınız olarsa bizimlə əlaqə saxlaya bilərsiniz.\n\nƏməkdaşlığınıza görə təşəkkür edir və cavabınızı gözləyirik.\n\nHörmətlə,\n[Ad]"
   },
   {
-    id: 6,
-    title: 'Stock Availability Inquiry',
-    titleAz: 'Stok Mövcudluğu',
-    en: 'Subject: Stock Availability Inquiry\n\nDear Sir/Madam,\n\nWe hope you are doing well.\n\nThis email is regarding stock availability inquiry. We kindly request the relevant information, confirmation, update, or action required from your side at your earliest convenience.\n\nYour prompt support will help us proceed with our internal process efficiently. Should you require any additional information, please do not hesitate to contact us.\n\nThank you for your cooperation and we look forward to your response.\n\nBest Regards,\n[Name]',
-    az: 'Mövzu: Stok Mövcudluğu\n\nHörmətli cənab/xanım,\n\nÜmid edirik ki, hər şey qaydasındadır.\n\nBu məktub stok mövcudluğu ilə bağlıdır. Müvafiq məlumatı, təsdiqi və ya tələb olunan tədbiri mümkün qədər tez təqdim etməyinizi xahiş edirik.\n\nOperativ dəstəyiniz daxili proseslərimizin vaxtında icrasına kömək edəcəkdir. Əlavə məlumata ehtiyacınız olarsa bizimlə əlaqə saxlaya bilərsiniz.\n\nƏməkdaşlığınıza görə təşəkkür edir və cavabınızı gözləyirik.\n\nHörmətlə,\n[Ad]'
+    "id": 6,
+    "title": "Stock Availability Inquiry",
+    "titleAz": "Stok Mövcudluğu",
+    "en": "Subject: Stock Availability Inquiry\n\nDear Sir/Madam,\n\nWe hope you are doing well.\n\nThis email is regarding stock availability inquiry. We kindly request the relevant information, confirmation, update, or action required from your side at your earliest convenience.\n\nYour prompt support will help us proceed with our internal process efficiently. Should you require any additional information, please do not hesitate to contact us.\n\nThank you for your cooperation and we look forward to your response.\n\nBest Regards,\n[Name]",
+    "az": "Mövzu: Stok Mövcudluğu\n\nHörmətli cənab/xanım,\n\nÜmid edirik ki, hər şey qaydasındadır.\n\nBu məktub stok mövcudluğu ilə bağlıdır. Müvafiq məlumatı, təsdiqi və ya tələb olunan tədbiri mümkün qədər tez təqdim etməyinizi xahiş edirik.\n\nOperativ dəstəyiniz daxili proseslərimizin vaxtında icrasına kömək edəcəkdir. Əlavə məlumata ehtiyacınız olarsa bizimlə əlaqə saxlaya bilərsiniz.\n\nƏməkdaşlığınıza görə təşəkkür edir və cavabınızı gözləyirik.\n\nHörmətlə,\n[Ad]"
   },
   {
-    id: 7,
-    title: 'Offer Rejection',
-    titleAz: 'Təklifin Rəddi',
-    en: 'Subject: Offer Rejection\n\nDear Sir/Madam,\n\nWe hope you are doing well.\n\nThis email is regarding offer rejection. We kindly request the relevant information, confirmation, update, or action required from your side at your earliest convenience.\n\nYour prompt support will help us proceed with our internal process efficiently. Should you require any additional information, please do not hesitate to contact us.\n\nThank you for your cooperation and we look forward to your response.\n\nBest Regards,\n[Name]',
-    az: 'Mövzu: Təklifin Rəddi\n\nHörmətli cənab/xanım,\n\nÜmid edirik ki, hər şey qaydasındadır.\n\nBu məktub təklifin rəddi ilə bağlıdır. Müvafiq məlumatı, təsdiqi və ya tələb olunan tədbiri mümkün qədər tez təqdim etməyinizi xahiş edirik.\n\nOperativ dəstəyiniz daxili proseslərimizin vaxtında icrasına kömək edəcəkdir. Əlavə məlumata ehtiyacınız olarsa bizimlə əlaqə saxlaya bilərsiniz.\n\nƏməkdaşlığınıza görə təşəkkür edir və cavabınızı gözləyirik.\n\nHörmətlə,\n[Ad]'
+    "id": 7,
+    "title": "Offer Rejection",
+    "titleAz": "Təklifin Rəddi",
+    "en": "Subject: Offer Rejection\n\nDear Sir/Madam,\n\nWe hope you are doing well.\n\nThis email is regarding offer rejection. We kindly request the relevant information, confirmation, update, or action required from your side at your earliest convenience.\n\nYour prompt support will help us proceed with our internal process efficiently. Should you require any additional information, please do not hesitate to contact us.\n\nThank you for your cooperation and we look forward to your response.\n\nBest Regards,\n[Name]",
+    "az": "Mövzu: Təklifin Rəddi\n\nHörmətli cənab/xanım,\n\nÜmid edirik ki, hər şey qaydasındadır.\n\nBu məktub təklifin rəddi ilə bağlıdır. Müvafiq məlumatı, təsdiqi və ya tələb olunan tədbiri mümkün qədər tez təqdim etməyinizi xahiş edirik.\n\nOperativ dəstəyiniz daxili proseslərimizin vaxtında icrasına kömək edəcəkdir. Əlavə məlumata ehtiyacınız olarsa bizimlə əlaqə saxlaya bilərsiniz.\n\nƏməkdaşlığınıza görə təşəkkür edir və cavabınızı gözləyirik.\n\nHörmətlə,\n[Ad]"
   },
   {
-    id: 8,
-    title: 'Warranty Claim',
-    titleAz: 'Zəmanət Müraciəti',
-    en: 'Subject: Warranty Claim\n\nDear Sir/Madam,\n\nWe hope you are doing well.\n\nThis email is regarding warranty claim. We kindly request the relevant information, confirmation, update, or action required from your side at your earliest convenience.\n\nYour prompt support will help us proceed with our internal process efficiently. Should you require any additional information, please do not hesitate to contact us.\n\nThank you for your cooperation and we look forward to your response.\n\nBest Regards,\n[Name]',
-    az: 'Mövzu: Zəmanət Müraciəti\n\nHörmətli cənab/xanım,\n\nÜmid edirik ki, hər şey qaydasındadır.\n\nBu məktub zəmanət müraciəti ilə bağlıdır. Müvafiq məlumatı, təsdiqi və ya tələb olunan tədbiri mümkün qədər tez təqdim etməyinizi xahiş edirik.\n\nOperativ dəstəyiniz daxili proseslərimizin vaxtında icrasına kömək edəcəkdir. Əlavə məlumata ehtiyacınız olarsa bizimlə əlaqə saxlaya bilərsiniz.\n\nƏməkdaşlığınıza görə təşəkkür edir və cavabınızı gözləyirik.\n\nHörmətlə,\n[Ad]'
+    "id": 8,
+    "title": "Warranty Claim",
+    "titleAz": "Zəmanət Müraciəti",
+    "en": "Subject: Warranty Claim\n\nDear Sir/Madam,\n\nWe hope you are doing well.\n\nThis email is regarding warranty claim. We kindly request the relevant information, confirmation, update, or action required from your side at your earliest convenience.\n\nYour prompt support will help us proceed with our internal process efficiently. Should you require any additional information, please do not hesitate to contact us.\n\nThank you for your cooperation and we look forward to your response.\n\nBest Regards,\n[Name]",
+    "az": "Mövzu: Zəmanət Müraciəti\n\nHörmətli cənab/xanım,\n\nÜmid edirik ki, hər şey qaydasındadır.\n\nBu məktub zəmanət müraciəti ilə bağlıdır. Müvafiq məlumatı, təsdiqi və ya tələb olunan tədbiri mümkün qədər tez təqdim etməyinizi xahiş edirik.\n\nOperativ dəstəyiniz daxili proseslərimizin vaxtında icrasına kömək edəcəkdir. Əlavə məlumata ehtiyacınız olarsa bizimlə əlaqə saxlaya bilərsiniz.\n\nƏməkdaşlığınıza görə təşəkkür edir və cavabınızı gözləyirik.\n\nHörmətlə,\n[Ad]"
   },
   {
-    id: 9,
-    title: 'Quality Complaint',
-    titleAz: 'Keyfiyyət Şikayəti',
-    en: 'Subject: Quality Complaint\n\nDear Sir/Madam,\n\nWe hope you are doing well.\n\nThis email is regarding quality complaint. We kindly request the relevant information, confirmation, update, or action required from your side at your earliest convenience.\n\nYour prompt support will help us proceed with our internal process efficiently. Should you require any additional information, please do not hesitate to contact us.\n\nThank you for your cooperation and we look forward to your response.\n\nBest Regards,\n[Name]',
-    az: 'Mövzu: Keyfiyyət Şikayəti\n\nHörmətli cənab/xanım,\n\nÜmid edirik ki, hər şey qaydasındadır.\n\nBu məktub keyfiyyət şikayəti ilə bağlıdır. Müvafiq məlumatı, təsdiqi və ya tələb olunan tədbiri mümkün qədər tez təqdim etməyinizi xahiş edirik.\n\nOperativ dəstəyiniz daxili proseslərimizin vaxtında icrasına kömək edəcəkdir. Əlavə məlumata ehtiyacınız olarsa bizimlə əlaqə saxlaya bilərsiniz.\n\nƏməkdaşlığınıza görə təşəkkür edir və cavabınızı gözləyirik.\n\nHörmətlə,\n[Ad]'
+    "id": 9,
+    "title": "Quality Complaint",
+    "titleAz": "Keyfiyyət Şikayəti",
+    "en": "Subject: Quality Complaint\n\nDear Sir/Madam,\n\nWe hope you are doing well.\n\nThis email is regarding quality complaint. We kindly request the relevant information, confirmation, update, or action required from your side at your earliest convenience.\n\nYour prompt support will help us proceed with our internal process efficiently. Should you require any additional information, please do not hesitate to contact us.\n\nThank you for your cooperation and we look forward to your response.\n\nBest Regards,\n[Name]",
+    "az": "Mövzu: Keyfiyyət Şikayəti\n\nHörmətli cənab/xanım,\n\nÜmid edirik ki, hər şey qaydasındadır.\n\nBu məktub keyfiyyət şikayəti ilə bağlıdır. Müvafiq məlumatı, təsdiqi və ya tələb olunan tədbiri mümkün qədər tez təqdim etməyinizi xahiş edirik.\n\nOperativ dəstəyiniz daxili proseslərimizin vaxtında icrasına kömək edəcəkdir. Əlavə məlumata ehtiyacınız olarsa bizimlə əlaqə saxlaya bilərsiniz.\n\nƏməkdaşlığınıza görə təşəkkür edir və cavabınızı gözləyirik.\n\nHörmətlə,\n[Ad]"
   },
   {
-    id: 10,
-    title: 'Supplier Registration Documents',
-    titleAz: 'Təchizatçı Qeydiyyatı',
-    en: 'Subject: Supplier Registration Documents\n\nDear Sir/Madam,\n\nWe hope you are doing well.\n\nThis email is regarding supplier registration documents. We kindly request the relevant information, confirmation, update, or action required from your side at your earliest convenience.\n\nYour prompt support will help us proceed with our internal process efficiently. Should you require any additional information, please do not hesitate to contact us.\n\nThank you for your cooperation and we look forward to your response.\n\nBest Regards,\n[Name]',
-    az: 'Mövzu: Təchizatçı Qeydiyyatı\n\nHörmətli cənab/xanım,\n\nÜmid edirik ki, hər şey qaydasındadır.\n\nBu məktub təchizatçı qeydiyyatı ilə bağlıdır. Müvafiq məlumatı, təsdiqi və ya tələb olunan tədbiri mümkün qədər tez təqdim etməyinizi xahiş edirik.\n\nOperativ dəstəyiniz daxili proseslərimizin vaxtında icrasına kömək edəcəkdir. Əlavə məlumata ehtiyacınız olarsa bizimlə əlaqə saxlaya bilərsiniz.\nƏməkdaşlığınıza görə təşəkkür edir və cavabınızı gözləyirik.\n\nHörmətlə,\n[Ad]'
+    "id": 10,
+    "title": "Supplier Registration Documents",
+    "titleAz": "Təchizatçı Qeydiyyatı",
+    "en": "Subject: Supplier Registration Documents\n\nDear Sir/Madam,\n\nWe hope you are doing well.\n\nThis email is regarding supplier registration documents. We kindly request the relevant information, confirmation, update, or action required from your side at your earliest convenience.\n\nYour prompt support will help us proceed with our internal process efficiently. Should you require any additional information, please do not hesitate to contact us.\n\nThank you for your cooperation and we look forward to your response.\n\nBest Regards,\n[Name]",
+    "az": "Mövzu: Təchizatçı Qeydiyyatı\n\nHörmətli cənab/xanım,\n\nÜmid edirik ki, hər şey qaydasındadır.\n\nBu məktub təchizatçı qeydiyyatı ilə bağlıdır. Müvafiq məlumatı, təsdiqi və ya tələb olunan tədbiri mümkün qədər tez təqdim etməyinizi xahiş edirik.\n\nOperativ dəstəyiniz daxili proseslərimizin vaxtında icrasına kömək edəcəkdir. Əlavə məlumata ehtiyacınız olarsa bizimlə əlaqə saxlaya bilərsiniz.\n\nƏməkdaşlığınıza görə təşəkkür edir və cavabınızı gözləyirik.\n\nHörmətlə,\n[Ad]"
   },
   {
-    id: 11,
-    title: 'Thank You Email',
-    titleAz: 'Təşəkkür Mesajı',
-    en: 'Subject: Thank You Email\n\nDear Sir/Madam,\n\nWe hope you are doing well.\n\nThis email is regarding thank you email. We kindly request the relevant information, confirmation, update, or action required from your side at your earliest convenience.\n\nYour prompt support will help us proceed with our internal process efficiently. Should you require any additional information, please do not hesitate to contact us.\n\nThank you for your cooperation and we look forward to your response.\n\nBest Regards,\n[Name]',
-    az: 'Mövzu: Təşəkkür Mesajı\n\nHörmətli cənab/xanım,\n\nÜmid edirik ki, hər şey qaydasındadır.\n\nBu məktub təşəkkür mesajı ilə bağlıdır. Müvafiq məlumatı, təsdiqi və ya tələb olunan tədbiri mümkün qədər tez təqdim etməyinizi xahiş edirik.\n\nOperativ dəstəyiniz daxili proseslərimizin vaxtında icrasına kömək edəcəkdir. Əlavə məlumata ehtiyacınız olarsa bizimlə əlaqə saxlaya bilərsiniz.\n\nƏməkdaşlığınıza görə təşəkkür edir və cavabınızı gözləyirik.\n\nHörmətlə,\n[Ad]'
+    "id": 11,
+    "title": "Thank You Email",
+    "titleAz": "Təşəkkür Mesajı",
+    "en": "Subject: Thank You Email\n\nDear Sir/Madam,\n\nWe hope you are doing well.\n\nThis email is regarding thank you email. We kindly request the relevant information, confirmation, update, or action required from your side at your earliest convenience.\n\nYour prompt support will help us proceed with our internal process efficiently. Should you require any additional information, please do not hesitate to contact us.\n\nThank you for your cooperation and we look forward to your response.\n\nBest Regards,\n[Name]",
+    "az": "Mövzu: Təşəkkür Mesajı\n\nHörmətli cənab/xanım,\n\nÜmid edirik ki, hər şey qaydasındadır.\n\nBu məktub təşəkkür mesajı ilə bağlıdır. Müvafiq məlumatı, təsdiqi və ya tələb olunan tədbiri mümkün qədər tez təqdim etməyinizi xahiş edirik.\n\nOperativ dəstəyiniz daxili proseslərimizin vaxtında icrasına kömək edəcəkdir. Əlavə məlumata ehtiyacınız olarsa bizimlə əlaqə saxlaya bilərsiniz.\n\nƏməkdaşlığınıza görə təşəkkür edir və cavabınızı gözləyirik.\n\nHörmətlə,\n[Ad]"
   },
   {
-    id: 12,
-    title: 'Purchase Order Confirmation',
-    titleAz: 'Sifariş Təsdiqi',
-    en: 'Subject: Purchase Order Confirmation – [PO Number]\n\nDear Sir/Madam,\n\nWe are pleased to confirm our purchase order as per the details below:\n\nPurchase Order No: [PO Number]\nDate: [Date]\nItem(s):\n• [Item 1] – Qty: [Qty] – Price: [Price]\n• [Item 2] – Qty: [Qty] – Price: [Price]\n\nTotal Order Value: [Total Amount]\nRequested Delivery Date: [Date]\nIncoterms: [Incoterm]\nPayment Terms: [Terms]\n\nPlease acknowledge receipt of this order and confirm the delivery schedule at your earliest convenience.\n\nBest Regards,\n[Name]',
-    az: 'Mövzu: Sifariş Təsdiqi – [PO Nömrəsi]\n\nHörmətli cənab/xanım,\n\nAşağıda göstərilən məlumatlara əsasən sifarişimizi təsdiq etməkdən məmnunuq:\n\nSifariş Nömrəsi: [PO Nömrəsi]\nTarix: [Tarix]\nMəhsul(lar):\n• [Məhsul 1] – Say: [Say] – Qiymət: [Qiymət]\n• [Məhsul 2] – Say: [Say] – Qiymət: [Qiymət]\n\nÜmumi Sifariş Məbləği: [Ümumi Məbləğ]\nTələb Olunan Çatdırılma Tarixi: [Tarix]\nİnkoterms: [Inkoterm]\nÖdəniş Şərtləri: [Şərtlər]\n\nXahiş edirik, sifarişin qəbulunu təsdiq edəsiniz və çatdırılma cədvəlini bildirəsiniz.\n\nHörmətlə,\n[Ad]'
+    "id": 12,
+    "title": "Purchase Order Confirmation",
+    "titleAz": "Sifariş Təsdiqi",
+    "en": "Subject: Purchase Order Confirmation – [PO Number]\n\nDear Sir/Madam,\n\nWe are pleased to confirm our purchase order as per the details below:\n\nPurchase Order No: [PO Number]\nDate: [Date]\nItem(s):\n• [Item 1] – Qty: [Qty] – Price: [Price]\n• [Item 2] – Qty: [Qty] – Price: [Price]\n\nTotal Order Value: [Total Amount]\nRequested Delivery Date: [Date]\nIncoterms: [Incoterm]\nPayment Terms: [Terms]\n\nPlease acknowledge receipt of this order and confirm the delivery schedule at your earliest convenience.\n\nBest Regards,\n[Name]",
+    "az": "Mövzu: Sifariş Təsdiqi – [PO Nömrəsi]\n\nHörmətli cənab/xanım,\n\nAşağıda göstərilən məlumatlara əsasən sifarişimizi təsdiq etməkdən məmnunuq:\n\nSifariş Nömrəsi: [PO Nömrəsi]\nTarix: [Tarix]\nMəhsul(lar):\n• [Məhsul 1] – Say: [Say] – Qiymət: [Qiymət]\n• [Məhsul 2] – Say: [Say] – Qiymət: [Qiymət]\n\nÜmumi Sifariş Məbləği: [Ümumi Məbləğ]\nTələb Olunan Çatdırılma Tarixi: [Tarix]\nİnkoterms: [Inkoterm]\nÖdəniş Şərtləri: [Şərtlər]\n\nXahiş edirik, sifarişin qəbulunu təsdiq edəsiniz və çatdırılma cədvəlini bildirəsiniz.\n\nHörmətlə,\n[Ad]"
   },
   {
-    id: 13,
-    title: 'Shipping Instruction',
-    titleAz: 'Göndəriş Təlimatı',
-    en: 'Subject: Shipping Instruction – [Order Reference]\n\nDear Sir/Madam,\n\nPlease find below the shipping instructions for the above-mentioned order:\n\nShipping Method: [Air / Sea / Road / Rail]\nIncoterms: [Incoterm]\nPort of Loading: [Port]\nPort of Discharge: [Port]\nExpected Shipment Date: [Date]\n\nDocuments Required:\n• Commercial Invoice\n• Packing List\n• Bill of Lading / Airway Bill\n• Certificate of Origin\n\nPlease ensure all documentation is prepared in accordance with the above requirements and send us the draft copies for review prior to shipping.\n\nBest Regards,\n[Name]',
-    az: 'Mövzu: Göndəriş Təlimatı – [Sifariş İstinadı]\n\nHörmətli cənab/xanım,\n\nYuxarıda qeyd olunan sifariş üzrə göndəriş təlimatlarını təqdim edirik:\n\nGöndərmə Metodu: [Hava / Dəniz / Quru / Dəmiryolu]\nİnkoterms: [Inkoterm]\nYükləmə Limanı: [Liman]\nBoşaltma Limanı: [Liman]\nGözlənilən Göndərmə Tarixi: [Tarix]\n\nTələb Olunan Sənədlər:\n• Kommersiya Fakturası\n• Paket Siyahısı\n• Koşiment / Aviaqaimə\n• Mənşə Şəhadətnaməsi\n\nXahiş edirik, bütün sənədlərin yuxarıdakı tələblərə uyğun hazırlanmasını təmin edəsiniz.\n\nHörmətlə,\n[Ad]'
+    "id": 13,
+    "title": "Shipping Instruction",
+    "titleAz": "Göndəriş Təlimatı",
+    "en": "Subject: Shipping Instruction – [Order Reference]\n\nDear Sir/Madam,\n\nPlease find below the shipping instructions for the above-mentioned order:\n\nShipping Method: [Air / Sea / Road / Rail]\nIncoterms: [Incoterm]\nPort of Loading: [Port]\nPort of Discharge: [Port]\nExpected Shipment Date: [Date]\n\nDocuments Required:\n• Commercial Invoice\n• Packing List\n• Bill of Lading / Airway Bill\n• Certificate of Origin\n\nPlease ensure all documentation is prepared in accordance with the above requirements and send us the draft copies for review prior to shipping.\n\nBest Regards,\n[Name]",
+    "az": "Mövzu: Göndəriş Təlimatı – [Sifariş İstinadı]\n\nHörmətli cənab/xanım,\n\nYuxarıda qeyd olunan sifariş üzrə göndəriş təlimatlarını təqdim edirik:\n\nGöndərmə Metodu: [Hava / Dəniz / Quru / Dəmiryolu]\nİnkoterms: [Inkoterm]\nYükləmə Limanı: [Liman]\nBoşaltma Limanı: [Liman]\nGözlənilən Göndərmə Tarixi: [Tarix]\n\nTələb Olunan Sənədlər:\n• Kommersiya Fakturası\n• Paket Siyahısı\n• Koşiment / Aviaqaimə\n• Mənşə Şəhadətnaməsi\n\nXahiş edirik, bütün sənədlərin yuxarıdakı tələblərə uyğun hazırlanmasını təmin edəsiniz.\n\nHörmətlə,\n[Ad]"
   },
   {
-    id: 14,
-    title: 'Invoice Reminder',
-    titleAz: 'Faktura Xatırlatması',
-    en: 'Subject: Invoice Reminder – [Invoice Number]\n\nDear Sir/Madam,\n\nWe hope this message finds you well.\n\nThis is a friendly reminder regarding invoice [Invoice Number] in the amount of [Amount] dated [Date], which is now due for payment.\n\nInvoice Details:\nInvoice No: [Invoice Number]\nAmount: [Amount]\nDue Date: [Due Date]\nDays Overdue: [Days]\n\nWe kindly request you to arrange the payment at your earliest convenience.\n\nShould you have any queries regarding this invoice, please do not hesitate to contact us.\n\nThank you for your prompt attention.\n\nBest Regards,\n[Name]',
-    az: 'Mövzu: Faktura Xatırlatması – [Faktura Nömrəsi]\n\nHörmətli cənab/xanım,\n\nÜmid edirik bu mesaj sizə yaxşı vaxtda çatır.\n\nBu, [Faktura Nömrəsi] nömrəli, [Məbləğ] məbləğində və [Tarix] tarixli fakturanın ödəniş müddətinin çatdığını xatırlatmaq üçündür.\n\nFaktura Məlumatları:\nFaktura No: [Faktura Nömrəsi]\nMəbləğ: [Məbləğ]\nÖdəniş Tarixi: [Tarix]\nGecikmə Günü: [Gün]\n\nXahiş edirik, ödənişi ən qısa zamanda təşkil edəsiniz.\n\nHörmətlə,\n[Ad]'
+    "id": 14,
+    "title": "Invoice Reminder",
+    "titleAz": "Faktura Xatırlatması",
+    "en": "Subject: Invoice Reminder – [Invoice Number]\n\nDear Sir/Madam,\n\nWe hope this message finds you well.\n\nThis is a friendly reminder regarding invoice [Invoice Number] in the amount of [Amount] dated [Date], which is now due for payment.\n\nInvoice Details:\nInvoice No: [Invoice Number]\nAmount: [Amount]\nDue Date: [Due Date]\nDays Overdue: [Days]\n\nWe kindly request you to arrange the payment at your earliest convenience.\n\nShould you have any queries regarding this invoice, please do not hesitate to contact us.\n\nThank you for your prompt attention.\n\nBest Regards,\n[Name]",
+    "az": "Mövzu: Faktura Xatırlatması – [Faktura Nömrəsi]\n\nHörmətli cənab/xanım,\n\nÜmid edirik bu mesaj sizə yaxşı vaxtda çatır.\n\nBu, [Faktura Nömrəsi] nömrəli, [Məbləğ] məbləğində və [Tarix] tarixli fakturanın ödəniş müddətinin çatdığını xatırlatmaq üçündür.\n\nFaktura Məlumatları:\nFaktura No: [Faktura Nömrəsi]\nMəbləğ: [Məbləğ]\nÖdəniş Tarixi: [Tarix]\nGecikmə Günü: [Gün]\n\nXahiş edirik, ödənişi ən qısa zamanda təşkil edəsiniz.\n\nHörmətlə,\n[Ad]"
   },
   {
-    id: 15,
-    title: 'Payment Confirmation',
-    titleAz: 'Ödəniş Təsdiqi',
-    en: 'Subject: Payment Confirmation – [Invoice Number]\n\nDear Sir/Madam,\n\nWe are pleased to confirm that the payment for invoice [Invoice Number] has been processed successfully.\n\nPayment Details:\nInvoice No: [Invoice Number]\nAmount Paid: [Amount]\nPayment Date: [Date]\nPayment Method: [Bank Transfer / Credit Card / Cheque]\nTransaction Reference: [Reference Number]\n\nPlease confirm receipt of the payment and update your records accordingly.\n\nThank you for your cooperation.\n\nBest Regards,\n[Name]',
-    az: 'Mövzu: Ödəniş Təsdiqi – [Faktura Nömrəsi]\n\nHörmətli cənab/xanım,\n\n[Faktura Nömrəsi] nömrəli faktura üzrə ödənişin uğurla həyata keçirildiyini təsdiq edirik.\n\nÖdəniş Məlumatları:\nFaktura No: [Faktura Nömrəsi]\nÖdənilən Məbləğ: [Məbləğ]\nÖdəniş Tarixi: [Tarix]\nÖdəniş Metodu: [Bank Köçürməsi / Kredit Kartı / Çek]\nƏməliyyat İstinadı: [İstinad Nömrəsi]\n\nXahiş edirik, ödənişin qəbulunu təsdiq edəsiniz.\n\nHörmətlə,\n[Ad]'
+    "id": 15,
+    "title": "Payment Confirmation",
+    "titleAz": "Ödəniş Təsdiqi",
+    "en": "Subject: Payment Confirmation – [Invoice Number]\n\nDear Sir/Madam,\n\nWe are pleased to confirm that the payment for invoice [Invoice Number] has been processed successfully.\n\nPayment Details:\nInvoice No: [Invoice Number]\nAmount Paid: [Amount]\nPayment Date: [Date]\nPayment Method: [Bank Transfer / Credit Card / Cheque]\nTransaction Reference: [Reference Number]\n\nPlease confirm receipt of the payment and update your records accordingly.\n\nThank you for your cooperation.\n\nBest Regards,\n[Name]",
+    "az": "Mövzu: Ödəniş Təsdiqi – [Faktura Nömrəsi]\n\nHörmətli cənab/xanım,\n\n[Faktura Nömrəsi] nömrəli faktura üzrə ödənişin uğurla həyata keçirildiyini təsdiq edirik.\n\nÖdəniş Məlumatları:\nFaktura No: [Faktura Nömrəsi]\nÖdənilən Məbləğ: [Məbləğ]\nÖdəniş Tarixi: [Tarix]\nÖdəniş Metodu: [Bank Köçürməsi / Kredit Kartı / Çek]\nƏməliyyat İstinadı: [İstinad Nömrəsi]\n\nXahiş edirik, ödənişin qəbulunu təsdiq edəsiniz.\n\nHörmətlə,\n[Ad]"
   },
   {
-    id: 16,
-    title: 'Proforma Invoice Request',
-    titleAz: 'Proforma Faktura Sorğusu',
-    en: 'Subject: Request for Proforma Invoice\n\nDear Sir/Madam,\n\nWe kindly request you to issue a proforma invoice for the following items:\n\nItem:\nQuantity:\nSpecifications:\n\nPlease include the following details in the proforma invoice:\n• Unit Price and Total Amount\n• Incoterms\n• Delivery Time\n• Payment Terms\n• Validity Period\n• Country of Origin\n\nThe proforma invoice is required for our internal approval process and letter of credit application.\n\nWe look forward to receiving the proforma invoice at your earliest convenience.\n\nBest Regards,\n[Name]',
-    az: 'Mövzu: Proforma Faktura Sorğusu\n\nHörmətli cənab/xanım,\n\nAşağıdakı məhsullar üçün proforma faktura verilməsini xahiş edirik:\n\nMəhsul:\nMiqdar:\nTexniki Xüsusiyyətlər:\n\nZəhmət olmasa proforma fakturada aşağıdakı məlumatları qeyd edin:\n• Vahid Qiyməti və Ümumi Məbləğ\n• İnkoterms\n• Çatdırılma Müddəti\n• Ödəniş Şərtləri\n• Qücvvdə Olma Müddəti\n• Mənşə Ölkəsi\n\nProforma faktura daxili təsdiq prosesimiz və akkreditiv müraciətimiz üçün tələb olunur.\n\nHörmətlə,\n[Ad]'
+    "id": 16,
+    "title": "Proforma Invoice Request",
+    "titleAz": "Proforma Faktura Sorğusu",
+    "en": "Subject: Request for Proforma Invoice\n\nDear Sir/Madam,\n\nWe kindly request you to issue a proforma invoice for the following items:\n\nItem:\nQuantity:\nSpecifications:\n\nPlease include the following details in the proforma invoice:\n• Unit Price and Total Amount\n• Incoterms\n• Delivery Time\n• Payment Terms\n• Validity Period\n• Country of Origin\n\nThe proforma invoice is required for our internal approval process and letter of credit application.\n\nWe look forward to receiving the proforma invoice at your earliest convenience.\n\nBest Regards,\n[Name]",
+    "az": "Mövzu: Proforma Faktura Sorğusu\n\nHörmətli cənab/xanım,\n\nAşağıdakı məhsullar üçün proforma faktura verilməsini xahiş edirik:\n\nMəhsul:\nMiqdar:\nTexniki Xüsusiyyətlər:\n\nZəhmət olmasa proforma fakturada aşağıdakı məlumatları qeyd edin:\n• Vahid Qiyməti və Ümumi Məbləğ\n• İnkoterms\n• Çatdırılma Müddəti\n• Ödəniş Şərtləri\n• Qüvvədə Olma Müddəti\n• Mənşə Ölkəsi\n\nProforma faktura daxili təsdiq prosesimiz və akkreditiv müraciətimiz üçün tələb olunur.\n\nHörmətlə,\n[Ad]"
   },
   {
-    id: 17,
-    title: 'Order Cancellation',
-    titleAz: 'Sifarişin Ləğvi',
-    en: 'Subject: Order Cancellation – [Order Reference]\n\nDear Sir/Madam,\n\nWe regret to inform you that we must cancel our order [Order Reference] due to unforeseen circumstances.\n\nOrder Details:\nOrder No: [Order Reference]\nDate of Order: [Date]\nReason for Cancellation: [Reason]\n\nWe sincerely apologize for any inconvenience this may cause. Please confirm cancellation and advise if any cancellation fees or charges apply.\n\nWe hope to continue our business relationship and look forward to working with you on future orders.\n\nThank you for your understanding.\n\nBest Regards,\n[Name]',
-    az: 'Mövzu: Sifarişin Ləğvi – [Sifariş İstinadı]\n\nHörmətli cənab/xanım,\n\nGözlənilməyən hallar səbəbindən [Sifariş İstinadı] nömrəli sifarişimizi ləğv etməli olduğumuzu təəssüflə bildiririk.\n\nSifariş Məlumatları:\nSifariş No: [Sifariş İstinadı]\nSifariş Tarixi: [Tarix]\nLəğv Səbəbi: [Səbəb]\n\nYaranan narahatçılığa görə üzr istəyirik. Ləğvi təsdiq etməyinizi və hər hansı ləğv ödənişi olub-olmadığını bildirməyinizi xahiş edirik.\n\nHörmətlə,\n[Ad]'
+    "id": 17,
+    "title": "Order Cancellation",
+    "titleAz": "Sifarişin Ləğvi",
+    "en": "Subject: Order Cancellation – [Order Reference]\n\nDear Sir/Madam,\n\nWe regret to inform you that we must cancel our order [Order Reference] due to unforeseen circumstances.\n\nOrder Details:\nOrder No: [Order Reference]\nDate of Order: [Date]\nReason for Cancellation: [Reason]\n\nWe sincerely apologize for any inconvenience this may cause. Please confirm cancellation and advise if any cancellation fees or charges apply.\n\nWe hope to continue our business relationship and look forward to working with you on future orders.\n\nThank you for your understanding.\n\nBest Regards,\n[Name]",
+    "az": "Mövzu: Sifarişin Ləğvi – [Sifariş İstinadı]\n\nHörmətli cənab/xanım,\n\nGözlənilməyən hallar səbəbindən [Sifariş İstinadı] nömrəli sifarişimizi ləğv etməli olduğumuzu təəssüflə bildiririk.\n\nSifariş Məlumatları:\nSifariş No: [Sifariş İstinadı]\nSifariş Tarixi: [Tarix]\nLəğv Səbəbi: [Səbəb]\n\nYaranan narahatçılığa görə üzr istəyirik. Ləğvi təsdiq etməyinizi və hər hansı ləğv ödənişi olub-olmadığını bildirməyinizi xahiş edirik.\n\nHörmətlə,\n[Ad]"
   },
   {
-    id: 18,
-    title: 'Late Delivery Notification',
-    titleAz: 'Gecikmiş Çatdırılma Bildirişi',
-    en: 'Subject: Late Delivery Notification – [Order Reference]\n\nDear Sir/Madam,\n\nWe regret to inform you that the delivery for order [Order Reference] is unfortunately delayed.\n\nOriginal Delivery Date: [Original Date]\nRevised Delivery Date: [Revised Date]\nReason for Delay: [Reason]\n\nWe sincerely apologize for any inconvenience this may cause. Please be assured that we are doing our utmost to minimize the delay and will keep you updated on the progress.\n\nShould you require any further information, please do not hesitate to contact us.\n\nThank you for your understanding.\n\nBest Regards,\n[Name]',
-    az: 'Mövzu: Gecikmiş Çatdırılma Bildirişi – [Sifariş İstinadı]\n\nHörmətli cənab/xanım,\n\n[Sifariş İstinadı] nömrəli sifariş üzrə çatdırılmanın təəssüf ki, gecikdiyini bildirmək məcburiyyətindəyik.\n\nPlanlaşdırılmış Tarix: [Əvvəlki Tarix]\nYenilənmiş Tarix: [Yeni Tarix]\nGecikmə Səbəbi: [Səbəb]\n\nYaranan narahatçılığa görə üzr istəyirik. Gecikməni minimuma endirmək üçün əlimizdən gələni edirik və sizi mütəmadi olaraq məlumatlandıracağıq.\n\nHörmətlə,\n[Ad]'
+    "id": 18,
+    "title": "Late Delivery Notification",
+    "titleAz": "Gecikmiş Çatdırılma Bildirişi",
+    "en": "Subject: Late Delivery Notification – [Order Reference]\n\nDear Sir/Madam,\n\nWe regret to inform you that the delivery for order [Order Reference] is unfortunately delayed.\n\nOriginal Delivery Date: [Original Date]\nRevised Delivery Date: [Revised Date]\nReason for Delay: [Reason]\n\nWe sincerely apologize for any inconvenience this may cause. Please be assured that we are doing our utmost to minimize the delay and will keep you updated on the progress.\n\nShould you require any further information, please do not hesitate to contact us.\n\nThank you for your understanding.\n\nBest Regards,\n[Name]",
+    "az": "Mövzu: Gecikmiş Çatdırılma Bildirişi – [Sifariş İstinadı]\n\nHörmətli cənab/xanım,\n\n[Sifariş İstinadı] nömrəli sifariş üzrə çatdırılmanın təəssüf ki, gecikdiyini bildirmək məcburiyyətindəyik.\n\nPlanlaşdırılmış Tarix: [Əvvəlki Tarix]\nYenilənmiş Tarix: [Yeni Tarix]\nGecikmə Səbəbi: [Səbəb]\n\nYaranan narahatçılığa görə üzr istəyirik. Gecikməni minimuma endirmək üçün əlimizdən gələni edirik.\n\nHörmətlə,\n[Ad]"
   },
   {
-    id: 19,
-    title: 'Request for Samples',
-    titleAz: 'Nümunə Tələbi',
-    en: 'Subject: Request for Product Samples\n\nDear Sir/Madam,\n\nWe are interested in your product range and would like to request samples of the following items for evaluation:\n\n1. [Product Name 1] – [Quantity]\n2. [Product Name 2] – [Quantity]\n3. [Product Name 3] – [Quantity]\n\nPlease advise if there are any charges for the samples and shipping. We will cover all associated costs if required.\n\nWe look forward to receiving the samples and potentially placing a bulk order based on the quality assessment.\n\nBest Regards,\n[Name]',
-    az: 'Mövzu: Məhsul Nümunələri Tələbi\n\nHörmətli cənab/xanım,\n\nMəhsul çeşidinizlə maraqlanırıq və aşağıdakı məhsulların nümunələrini qiymətləndirmə üçün xahiş edirik:\n\n1. [Məhsul Adı 1] – [Say]\n2. [Məhsul Adı 2] – [Say]\n3. [Məhsul Adı 3] – [Say]\n\nNümunələr və göndərmə üçün hər hansı ödəniş olub-olmadığını bildirin. Lazım gələrsə, bütün xərcləri ödəyəcəyik.\n\nNümunələri almağı və keyfiyyət qiymətləndirməsinə əsasən toplu sifariş verməyi ümid edirik.\n\nHörmətlə,\n[Ad]'
+    "id": 19,
+    "title": "Request for Samples",
+    "titleAz": "Nümunə Tələbi",
+    "en": "Subject: Request for Product Samples\n\nDear Sir/Madam,\n\nWe are interested in your product range and would like to request samples of the following items for evaluation:\n\n1. [Product Name 1] – [Quantity]\n2. [Product Name 2] – [Quantity]\n3. [Product Name 3] – [Quantity]\n\nPlease advise if there are any charges for the samples and shipping. We will cover all associated costs if required.\n\nWe look forward to receiving the samples and potentially placing a bulk order based on the quality assessment.\n\nBest Regards,\n[Name]",
+    "az": "Mövzu: Məhsul Nümunələri Tələbi\n\nHörmətli cənab/xanım,\n\nMəhsul çeşidinizlə maraqlanırıq və aşağıdakı məhsulların nümunələrini qiymətləndirmə üçün xahiş edirik:\n\n1. [Məhsul Adı 1] – [Say]\n2. [Məhsul Adı 2] – [Say]\n3. [Məhsul Adı 3] – [Say]\n\nNümunələr və göndərmə üçün hər hansı ödəniş olub-olmadığını bildirin. Lazım gələrsə, bütün xərcləri ödəyəcəyik.\n\nHörmətlə,\n[Ad]"
   },
   {
-    id: 20,
-    title: 'Price Revision Request',
-    titleAz: 'Qiymət Yeniləmə Sorğusu',
-    en: 'Subject: Price Revision Request – [Product Name]\n\nDear Sir/Madam,\n\nWe refer to our recent discussions regarding the pricing of [Product Name].\n\nDue to [reason – e.g. increased order volume / market changes], we kindly request a revision of the current pricing structure.\n\nCurrent Price: [Current Price]\nProposed Price: [Proposed Price]\nEffective Date: [Date]\n\nWe believe the revised pricing will reflect the current market conditions and support our continued partnership.\n\nWe look forward to your favorable consideration and prompt response.\n\nBest Regards,\n[Name]',
-    az: 'Mövzu: Qiymət Yeniləmə Sorğusu – [Məhsul Adı]\n\nHörmətli cənab/xanım,\n\n[Məhsul Adı] məhsulunun qiymətləndirilməsi ilə bağlı son müzakirələrimizə istinad edirik.\n\n[Səbəb – məs. artan sifariş həcmi / bazar dəyişiklikləri] səbəbindən, mövcud qiymət strukturunun yenidən nəzərdən keçirilməsini xahiş edirik.\n\nCari Qiymət: [Cari Qiymət]\nTəklif Olunan Qiymət: [Təklif Olunan Qiymət]\nQücvvyə Minmə Tarixi: [Tarix]\n\nYenilənmiş qiymətin mövcud bazar şərtlərini əks etdirəcəyinə və əməkdaşlığımızı dəstəkləyəcəyinə inanırıq.\n\nHörmətlə,\n[Ad]'
+    "id": 20,
+    "title": "Price Revision Request",
+    "titleAz": "Qiymət Yeniləmə Sorğusu",
+    "en": "Subject: Price Revision Request – [Product Name]\n\nDear Sir/Madam,\n\nWe refer to our recent discussions regarding the pricing of [Product Name].\n\nDue to increased order volume / market changes, we kindly request a revision of the current pricing structure.\n\nCurrent Price: [Current Price]\nProposed Price: [Proposed Price]\nEffective Date: [Date]\n\nWe believe the revised pricing will reflect the current market conditions and support our continued partnership.\n\nWe look forward to your favorable consideration and prompt response.\n\nBest Regards,\n[Name]",
+    "az": "Mövzu: Qiymət Yeniləmə Sorğusu – [Məhsul Adı]\n\nHörmətli cənab/xanım,\n\n[Məhsul Adı] məhsulunun qiymətləndirilməsi ilə bağlı son müzakirələrimizə istinad edirik.\n\nArtan sifariş həcmi / bazar dəyişiklikləri səbəbindən, mövcud qiymət strukturunun yenidən nəzərdən keçirilməsini xahiş edirik.\n\nCari Qiymət: [Cari Qiymət]\nTəklif Olunan Qiymət: [Təklif Olunan Qiymət]\nQüvvəyə Minmə Tarixi: [Tarix]\n\nHörmətlə,\n[Ad]"
   },
   {
-    id: 21,
-    title: 'Bid Extension Request',
-    titleAz: 'Təklif Müddətinin Uzadılması',
-    en: 'Subject: Request for Bid Deadline Extension – [Tender Reference]\n\nDear Sir/Madam,\n\nWe are writing to respectfully request an extension of the bid submission deadline for the above-referenced tender.\n\nCurrent Deadline: [Date and Time]\nRequested Extension: [Number] days\nProposed New Deadline: [Date and Time]\n\nReason for Extension:\n[Detailed explanation]\n\nWe assure you that we remain fully committed to submitting a competitive and comprehensive bid and the additional time will enable us to prepare a more complete proposal.\n\nThank you for your kind consideration.\n\nBest Regards,\n[Name]',
-    az: 'Mövzu: Təklif Müddətinin Uzadılması Sorğusu – [Tender İstinadı]\n\nHörmətli cənab/xanım,\n\nYuxarıda qeyd olunan tender üzrə təklif vermə son tarixinin uzadılmasını hörmətlə xahiş edirik.\n\nCari Son Tarix: [Tarix və Saat]\nİstənilən Uzadılma: [Say] gün\nTəklif Olunan Yeni Tarix: [Tarix və Saat]\n\nUzadılma Səbəbi:\n[Ətraflı izahat]\n\nRəqabətqabiliyyətli və hərtərəfli təklif təqdim etmək üçün tam öhdəliyimizin olduğunu bildiririk.\n\nHörmətlə,\n[Ad]'
+    "id": 21,
+    "title": "Bid Extension Request",
+    "titleAz": "Təklif Müddətinin Uzadılması",
+    "en": "Subject: Request for Bid Deadline Extension – [Tender Reference]\n\nDear Sir/Madam,\n\nWe are writing to respectfully request an extension of the bid submission deadline for the above-referenced tender.\n\nCurrent Deadline: [Date and Time]\nRequested Extension: [Number] days\nProposed New Deadline: [Date and Time]\n\nReason for Extension:\n[Detailed explanation]\n\nWe assure you that we remain fully committed to submitting a competitive and comprehensive bid.\n\nThank you for your kind consideration.\n\nBest Regards,\n[Name]",
+    "az": "Mövzu: Təklif Müddətinin Uzadılması Sorğusu – [Tender İstinadı]\n\nHörmətli cənab/xanım,\n\nYuxarıda qeyd olunan tender üzrə təklif vermə son tarixinin uzadılmasını hörmətlə xahiş edirik.\n\nCari Son Tarix: [Tarix və Saat]\nİstənilən Uzadılma: [Say] gün\nTəklif Olunan Yeni Tarix: [Tarix və Saat]\n\nHörmətlə,\n[Ad]"
   },
   {
-    id: 22,
-    title: 'Supplier Performance Review',
-    titleAz: 'Təchizatçı Fəaliyyətinin Qiymətləndirilməsi',
-    en: 'Subject: Supplier Performance Review – [Period]\n\nDear Sir/Madam,\n\nAs part of our supplier management program, we have completed the performance evaluation for the period of [Period].\n\nYour overall rating: [Rating] / 5\n\nEvaluation Criteria:\n• Product Quality: [Score]/5\n• Delivery Performance: [Score]/5\n• Pricing Competitiveness: [Score]/5\n• Responsiveness: [Score]/5\n• Documentation: [Score]/5\n\nStrengths:\n[List of strengths]\n\nAreas for Improvement:\n[List of improvement areas]\n\nWe value our partnership and look forward to your continued improvement.\n\nBest Regards,\n[Name]',
-    az: 'Mövzu: Təchizatçı Fəaliyyətinin Qiymətləndirilməsi – [Dövr]\n\nHörmətli cənab/xanım,\n\nTəchizatçı idarəetmə proqramımız çərçivəsində, [Dövr] dövrü üçün fəaliyyət qiymətləndirməsini tamamladıq.\n\nÜmumi reytinqiniz: [Reytinq] / 5\n\nQiymətləndirmə Meyarları:\n• Məhsul Keyfiyyəti: [Bal]/5\n• Çatdırılma Performansı: [Bal]/5\n• Qiymət Rəqabətliliyi: [Bal]/5\n• Cavab vermə qabiliyyəti: [Bal]/5\n• Sənədləşdirmə: [Bal]/5\n\nƏməkdaşlığımızı dəyərləndirir və davamlı təkmilləşməyinizi gözləyirik.\n\nHörmətlə,\n[Ad]'
+    "id": 22,
+    "title": "Supplier Performance Review",
+    "titleAz": "Təchizatçı Fəaliyyətinin Qiymətləndirilməsi",
+    "en": "Subject: Supplier Performance Review – [Period]\n\nDear Sir/Madam,\n\nAs part of our supplier management program, we have completed the performance evaluation for the period of [Period].\n\nYour overall rating: [Rating] / 5\n\nEvaluation Criteria:\n• Product Quality: [Score]/5\n• Delivery Performance: [Score]/5\n• Pricing Competitiveness: [Score]/5\n• Responsiveness: [Score]/5\n• Documentation: [Score]/5\n\nWe value our partnership and look forward to your continued improvement.\n\nBest Regards,\n[Name]",
+    "az": "Mövzu: Təchizatçı Fəaliyyətinin Qiymətləndirilməsi – [Dövr]\n\nHörmətli cənab/xanım,\n\nTəchizatçı idarəetmə proqramımız çərçivəsində, [Dövr] dövrü üçün fəaliyyət qiymətləndirməsini tamamladıq.\n\nÜmumi reytinqiniz: [Reytinq] / 5\n\nQiymətləndirmə Meyarları:\n• Məhsul Keyfiyyəti: [Bal]/5\n• Çatdırılma Performansı: [Bal]/5\n• Qiymət Rəqabətliliyi: [Bal]/5\n• Cavab vermə qabiliyyəti: [Bal]/5\n• Sənədləşdirmə: [Bal]/5\n\nHörmətlə,\n[Ad]"
   },
   {
-    id: 23,
-    title: 'Contract Agreement',
-    titleAz: 'Müqavilə Razılaşması',
-    en: 'Subject: Contract Agreement – [Project/Product Name]\n\nDear Sir/Madam,\n\nWe are pleased to enclose the final version of the contract agreement for [Project/Product Name] for your review and signature.\n\nContract Reference: [Contract Number]\nDuration: [Start Date] – [End Date]\nTotal Value: [Amount]\n\nPlease find the agreement attached.\n\nKindly review the terms and conditions and return the signed copy to us by [Date].\n\nShould you have any questions or require clarification on any clause, please do not hesitate to contact us.\n\nWe look forward to a successful partnership.\n\nBest Regards,\n[Name]',
-    az: 'Mövzu: Müqavilə Razılaşması – [Layihə/Məhsul Adı]\n\nHörmətli cənab/xanım,\n\n[Layihə/Məhsul Adı] üçün müqavilənin yekun variantını baxış və imzalama üçün təqdim etməkdən məmnunuq.\n\nMüqavilə İstinadı: [Müqavilə Nömrəsi]\nMüddəti: [Başlama Tarixi] – [Bitmə Tarixi]\nÜmumi Dəyər: [Məbləğ]\n\nZəhmət olmasa şərtləri nəzərdən keçirin və imzalanmış nüsxəni [Tarix] tarixinə qədər bizə qaytarın.\n\nUğurlu əməkdaşlıq üçün səbirsizlənirik.\n\nHörmətlə,\n[Ad]'
+    "id": 23,
+    "title": "Contract Agreement",
+    "titleAz": "Müqavilə Razılaşması",
+    "en": "Subject: Contract Agreement – [Project/Product Name]\n\nDear Sir/Madam,\n\nWe are pleased to enclose the final version of the contract agreement for [Project/Product Name] for your review and signature.\n\nContract Reference: [Contract Number]\nDuration: [Start Date] – [End Date]\nTotal Value: [Amount]\n\nPlease find the agreement attached.\n\nKindly review the terms and conditions and return the signed copy to us by [Date].\n\nWe look forward to a successful partnership.\n\nBest Regards,\n[Name]",
+    "az": "Mövzu: Müqavilə Razılaşması – [Layihə/Məhsul Adı]\n\nHörmətli cənab/xanım,\n\n[Layihə/Məhsul Adı] üçün müqavilənin yekun variantını baxış və imzalama üçün təqdim etməkdən məmnunuq.\n\nMüqavilə İstinadı: [Müqavilə Nömrəsi]\nMüddəti: [Başlama Tarixi] – [Bitmə Tarixi]\nÜmumi Dəyər: [Məbləğ]\n\nHörmətlə,\n[Ad]"
   },
   {
-    id: 24,
-    title: 'Export Documentation Request',
-    titleAz: 'İxrac Sənədləri Sorğusu',
-    en: 'Subject: Export Documentation Request – [Order Reference]\n\nDear Sir/Madam,\n\nWe kindly request the following export documents for the above-mentioned shipment:\n\nRequired Documents:\n• Certificate of Origin\n• Bill of Lading / Airway Bill\n• Packing List\n• Commercial Invoice\n• Insurance Certificate\n• Inspection Certificate\n\nPlease ensure all documents are prepared in accordance with the letter of credit requirements and local regulations.\n\nThe documents are required by [Date] for customs clearance purposes.\n\nThank you for your prompt assistance.\n\nBest Regards,\n[Name]',
-    az: 'Mövzu: İxrac Sənədləri Sorğusu – [Sifariş İstinadı]\n\nHörmətli cənab/xanım,\n\nYuxarıda qeyd olunan göndəriş üçün aşağıdakı ixrac sənədlərini xahiş edirik:\n\nTələb Olunan Sənədlər:\n• Mənşə Şəhadətnaməsi\n• Koşiment / Aviaqaimə\n• Paket Siyahısı\n• Kommersiya Fakturası\n• Sığorta Şəhadətnaməsi\n• Yoxlama Şəhadətnaməsi\n\nZəhmət olmasa bütün sənədlərin akkreditiv tələblərinə və yerli qaydalara uyğun hazırlanmasını təmin edin.\n\nHörmətlə,\n[Ad]'
+    "id": 24,
+    "title": "Export Documentation Request",
+    "titleAz": "İxrac Sənədləri Sorğusu",
+    "en": "Subject: Export Documentation Request – [Order Reference]\n\nDear Sir/Madam,\n\nWe kindly request the following export documents for the above-mentioned shipment:\n\nRequired Documents:\n• Certificate of Origin\n• Bill of Lading / Airway Bill\n• Packing List\n• Commercial Invoice\n• Insurance Certificate\n• Inspection Certificate\n\nPlease ensure all documents are prepared in accordance with the letter of credit requirements.\n\nThank you for your prompt assistance.\n\nBest Regards,\n[Name]",
+    "az": "Mövzu: İxrac Sənədləri Sorğusu – [Sifariş İstinadı]\n\nHörmətli cənab/xanım,\n\nYuxarıda qeyd olunan göndəriş üçün aşağıdakı ixrac sənədlərini xahiş edirik:\n\nTələb Olunan Sənədlər:\n• Mənşə Şəhadətnaməsi\n• Koşiment / Aviaqaimə\n• Paket Siyahısı\n• Kommersiya Fakturası\n• Sığorta Şəhadətnaməsi\n• Yoxlama Şəhadətnaməsi\n\nHörmətlə,\n[Ad]"
   },
   {
-    id: 25,
-    title: 'Tender Participation',
-    titleAz: 'Tender İştirakı',
-    en: 'Subject: Tender Submission – [Tender Reference]\n\nDear Sir/Madam,\n\nWe are pleased to submit our bid in response to your tender [Tender Reference] for [Project/Service Name].\n\nPlease find attached our complete tender package including:\n\n• Technical Proposal\n• Commercial Offer\n• Company Profile\n• Certifications and Licenses\n• References\n\nOur offer is valid until [Date]. We confirm our full compliance with all tender terms and conditions.\n\nWe appreciate the opportunity to participate and look forward to your favorable evaluation.\n\nBest Regards,\n[Name]',
-    az: 'Mövzu: Tender Təqdimatı – [Tender İstinadı]\n\nHörmətli cənab/xanım,\n\n[Layihə/Xidmət Adı] üçün [Tender İstinadı] tenderinə cavab olaraq təklifimizi təqdim etməkdən məmnunuq.\n\nTam tender paketimiz əlavə olunur:\n\n• Texniki Təklif\n• Kommersiya Təklifi\n• Şirkət Profili\n• Sertifikatlar və Lisenziyalar\n• İstinadlar\n\nTəklifimiz [Tarix] tarixinə qədər qücvvdədir. Bütün tender şərtlərinə tam uyğunluğumuzu təsdiq edirik.\n\nHörmətlə,\n[Ad]'
+    "id": 25,
+    "title": "Tender Participation",
+    "titleAz": "Tender İştirakı",
+    "en": "Subject: Tender Submission – [Tender Reference]\n\nDear Sir/Madam,\n\nWe are pleased to submit our bid in response to your tender [Tender Reference] for [Project/Service Name].\n\nPlease find attached our complete tender package including:\n\n• Technical Proposal\n• Commercial Offer\n• Company Profile\n• Certifications and Licenses\n• References\n\nOur offer is valid until [Date]. We confirm our full compliance with all tender terms and conditions.\n\nBest Regards,\n[Name]",
+    "az": "Mövzu: Tender Təqdimatı – [Tender İstinadı]\n\nHörmətli cənab/xanım,\n\n[Layihə/Xidmət Adı] üçün [Tender İstinadı] tenderinə cavab olaraq təklifimizi təqdim etməkdən məmnunuq.\n\nTam tender paketimiz əlavə olunur:\n\n• Texniki Təklif\n• Kommersiya Təklifi\n• Şirkət Profili\n• Sertifikatlar və Lisenziyalar\n• İstinadlar\n\nHörmətlə,\n[Ad]"
   },
   {
-    id: 26,
-    title: 'Credit Application',
-    titleAz: 'Kredit Müraciəti',
-    en: 'Subject: Credit Application – [Company Name]\n\nDear Sir/Madam,\n\nWe would like to apply for a credit account with your company to facilitate our ongoing business transactions.\n\nCompany Details:\nCompany Name: [Name]\nLegal Form: [Legal Form]\nTax ID: [Tax ID]\nYears in Business: [Years]\n\nRequested Credit Limit: [Amount]\nRequested Payment Terms: [Terms]\n\nPlease find attached our financial statements, bank references, and trade references for your evaluation.\n\nWe look forward to establishing a mutually beneficial credit arrangement.\n\nBest Regards,\n[Name]',
-    az: 'Mövzu: Kredit Müraciəti – [Şirkət Adı]\n\nHörmətli cənab/xanım,\n\nDavamlı iş əməkdaşlığımızı asanlaşdırmaq üçün şirkətinizdə kredit hesabı açmaq üçün müraciət etmək istəyirik.\n\nŞirkət Məlumatları:\nŞirkət Adı: [Ad]\nHüquqi Forma: [Hüquqi Forma]\nVergi ID: [Vergi ID]\nFəaliyyət Müddəti: [İl]\n\nİstənilən Kredit Limiti: [Məbləğ]\nİstənilən Ödəniş Şərtləri: [Şərtlər]\n\nMaliyyə hesabatlarımız, bank və ticarət istinadlarımız əlavə olunur.\n\nHörmətlə,\n[Ad]'
+    "id": 26,
+    "title": "Credit Application",
+    "titleAz": "Kredit Müraciəti",
+    "en": "Subject: Credit Application – [Company Name]\n\nDear Sir/Madam,\n\nWe would like to apply for a credit account with your company to facilitate our ongoing business transactions.\n\nCompany Details:\nCompany Name: [Name]\nLegal Form: [Legal Form]\nTax ID: [Tax ID]\nYears in Business: [Years]\n\nRequested Credit Limit: [Amount]\nRequested Payment Terms: [Terms]\n\nPlease find attached our financial statements, bank references, and trade references for your evaluation.\n\nBest Regards,\n[Name]",
+    "az": "Mövzu: Kredit Müraciəti – [Şirkət Adı]\n\nHörmətli cənab/xanım,\n\nDavamlı iş əməkdaşlığımızı asanlaşdırmaq üçün şirkətinizdə kredit hesabı açmaq üçün müraciət etmək istəyirik.\n\nŞirkət Məlumatları:\nŞirkət Adı: [Ad]\nHüquqi Forma: [Hüquqi Forma]\nVergi ID: [Vergi ID]\nFəaliyyət Müddəti: [İl]\n\nHörmətlə,\n[Ad]"
   }
 ];
 
-function renderTemplates() {
-  var grid = document.getElementById('templateGrid');
-  grid.innerHTML = '';
-  templates.forEach(function(t) {
-    var card = document.createElement('div');
-    card.className = 'template-card';
-    var header = document.createElement('div');
-    header.className = 'template-header';
-    header.innerHTML =
-      '<div class="title-group">' +
-        '<span class="number">' + t.id + '</span>' +
-        '<span class="title-main">' + escHtml(t.title) + '</span>' +
-        '<span class="title-sub">/ ' + escHtml(t.titleAz) + '</span>' +
-        '<span class="lang-indicators">' +
-          '<span class="lang-badge en">EN</span>' +
-          '<span class="lang-badge az">AZ</span>' +
-        '</span>' +
-      '</div>' +
-      '<span class="arrow">▾</span>';
-    var body = document.createElement('div');
-    body.className = 'template-body';
-    body.innerHTML = langSection('en', '\ud83c\uddec\ud83c\udde7 English', t.en) + langSection('az', '\ud83c\udde6\ud83c\uddff Az\u0259rbaycan', t.az);
-    header.addEventListener('click', function() { card.classList.toggle('open'); });
-    card.appendChild(header);
-    card.appendChild(body);
-    grid.appendChild(card);
+function render(){
+  var g = document.getElementById('grid');
+  g.innerHTML = '';
+  DATA.forEach(function(t){
+    var c = document.createElement('div');
+    c.className = 'template-card';
+    c.innerHTML =
+      '<div class="template-header" onclick="this.parentNode.classList.toggle(\'open\')">' +
+        '<div class="tg"><span class="num">' + t.id + '</span><span class="tm">' + esc(t.title) + '</span><span class="ts">/ ' + esc(t.titleAz) + '</span>' +
+        '<span class="lang"><span class="lb en">EN</span><span class="lb az">AZ</span></span></div>' +
+        '<span class="ar">▾</span></div>' +
+      '<div class="tb">' +
+        sec('en','\ud83c\uddec\ud83c\udde7 English',t.en) +
+        sec('az','\ud83c\udde6\ud83c\uddff Az\u0259rbaycan',t.az) +
+      '</div>';
+    g.appendChild(c);
   });
 }
 
-function langSection(lang, label, text) {
-  var lc = lang === 'en' ? 'en-label' : 'az-label';
-  return '<div class="lang-section">' +
-    '<div class="lang-section-header">' +
-      '<span class="lang-label ' + lc + '">' + label + '</span>' +
-      '<button class="copy-btn" onclick="copyText(this, \'' + escJs(text) + '\')">' +
-        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>' +
-        ' Kopyala' +
-      '</button>' +
-    '</div>' +
-    '<div class="email-content">' + escHtmlBr(text) + '</div>' +
-  '</div>';
+function sec(lang,label,text){
+  var lc = lang==='en'?'enl':'azl';
+  var txt = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+  var jstxt = text.replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/\n/g,'\\n');
+  return '<div class="ls"><div class="lsh"><span class="ll '+lc+'">'+label+'</span>' +
+    '<button class="cb" onclick="cp(this,\''+jstxt+'\')">' +
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Kopyala</button></div>' +
+    '<div class="ec">'+txt+'</div></div>';
 }
 
-function escHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-function escHtmlBr(s) { return escHtml(s).replace(/\n/g,'<br>'); }
-function escJs(s) { return s.replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/\n/g,'\\n'); }
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 
-function copyText(btn, text) {
+function cp(btn,text){
   var d = text.replace(/\\n/g,'\n').replace(/\\\\/g,'\\').replace(/\\'/g,"'");
-  navigator.clipboard.writeText(d).then(function() {
+  navigator.clipboard.writeText(d).then(function(){
     btn.innerHTML = '\u2713 Kopyaland\u0131!';
-    btn.classList.add('copied');
-    setTimeout(function() {
-      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Kopyala';
-      btn.classList.remove('copied');
-    }, 2000);
-  }).catch(function() {
+    btn.className = 'cb ok';
+    setTimeout(function(){btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Kopyala';btn.className='cb';},2000);
+  }).catch(function(){
     var ta = document.createElement('textarea');
     ta.value = d;
     document.body.appendChild(ta);
@@ -359,15 +283,12 @@ function copyText(btn, text) {
     document.execCommand('copy');
     document.body.removeChild(ta);
     btn.innerHTML = '\u2713 Kopyaland\u0131!';
-    btn.classList.add('copied');
-    setTimeout(function() {
-      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Kopyala';
-      btn.classList.remove('copied');
-    }, 2000);
+    btn.className = 'cb ok';
+    setTimeout(function(){btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Kopyala';btn.className='cb';},2000);
   });
 }
 
-document.addEventListener('DOMContentLoaded', renderTemplates);
+document.addEventListener('DOMContentLoaded', render);
 </script>
 </body>
 </html>
