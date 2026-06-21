@@ -206,10 +206,10 @@ var d=t.replace(/\\\\n/g,'\\n').replace(/\\\\\\\\/g,'\\\\').replace(/\\\\'/g,"'"
 navigator.clipboard.writeText(d).then(function(){{b.innerHTML='\\u2713 Copied!';b.className='cb ok';setTimeout(function(){{b.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy';b.className='cb';}},2000)}}).catch(function(){{var ta=document.createElement('textarea');ta.value=d;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);b.innerHTML='\\u2713 Copied!';b.className='cb ok';setTimeout(function(){{b.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy';b.className='cb';}},2000)}})
 }}
 r();
-}})();
 window.filter = function(v){{
   r(v);
 }}
+}})();
 </script>
 </body>
 </html>"""
