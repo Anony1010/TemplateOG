@@ -207,7 +207,9 @@ navigator.clipboard.writeText(d).then(function(){{b.innerHTML='\\u2713 Copied!';
 }}
 r();
 }})();
-function filter(v){{r(v)}}
+window.filter = function(v){{
+  r(v);
+}}
 </script>
 </body>
 </html>"""
