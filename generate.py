@@ -7,9 +7,9 @@ templates = [
 "Subject: Request for Product Quotation\n\nDear Sir/Madam,\n\nPlease review the attached document and provide a quotation for a product that meets the specified parameters.\n\nAdditionally, please advise:\n\n- Whether the product is available in stock;\n- Delivery options to Azerbaijan by air and road freight;\n- Manufacturing/lead time;\n- Estimated delivery time.\n\nWe look forward to your quotation.\n\nBest regards,\n[Your Name]\n[Company Name]",
 "Mövzu: Məhsul Üçün Qiymət Təklifi Sorğusu\n\nHörmətli cənab/xanım,\n\nƏlavə olunmuş sənədi nəzərdən keçirib göstərilən parametrlərə uyğun məhsul üçün qiymət təklifi təqdim edəsiniz.\n\nƏlavə olaraq, aşağıdakıları bildirəsiniz:\n\n- Məhsulun stokda olub-olmaması;\n- Azərbaycana hava və quru yolu ilə çatdırılma variantları;\n- İstehsal/çatdırılma müddəti;\n- Təxmini çatdırılma vaxtı.\n\nQiymət təklifinizi gözləyirik.\n\nHörmətlə,\n[Adınız]\n[Şirkət Adı]"),
 
-(2,"Alternative Item Inquiry","Alternativ Məhsul Təklifi",
-"Subject: Alternative Item Inquiry\n\nDear Sir/Madam,\n\nThe requested product is currently not available. Would you like to consider an alternative item?\n\nPlease let us know if an alternative would be acceptable for your needs.\n\nWe look forward to your response.\n\nBest regards,\n[Your Name]\n[Company Name]",
-"Mövzu: Alternativ Məhsul Təklifi\n\nHörmətli cənab/xanım,\n\nTələb etdiyiniz məhsul hazırda mövcud deyil. Alternativ məhsulu nəzərdən keçirmək istərdinizmi?\n\nAlternativin sizin üçün uyğun olub-olmadığını bildirin.\n\nCavabınızı gözləyirik.\n\nHörmətlə,\n[Adınız]\n[Şirkət Adı]"),
+(2,"Alternative Item Inquiry","Alternativ Məhsul Sorğusu",
+"Subject: Alternative Item Inquiry\n\nDear Sir/Madam,\n\nWould you like to consider an alternative item for your requirement?\n\nPlease let us know if an alternative would be acceptable.\n\nWe look forward to your response.\n\nBest regards,\n[Your Name]\n[Company Name]",
+"Mövzu: Alternativ Məhsul Təklifi\n\nHörmətli cənab/xanım,\n\nTələbiniz üçün alternativ məhsulu nəzərdən keçirmək istərdinizmi?\n\nAlternativin sizin üçün uyğun olub-olmadığını bildirin.\n\nCavabınızı gözləyirik.\n\nHörmətlə,\n[Adınız]\n[Şirkət Adı]"),
 
 (3,"Best Price Request","Ən Yaxşı Qiymət Tələbi",
 "Subject: Best Price Request\n\nDear Sir/Madam,\n\nThank you for your quotation. Kindly provide your best possible price for approval.\n\nWe look forward to your revised offer.\n\nBest regards,\n[Name]",
