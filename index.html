@@ -69,7 +69,7 @@ var D=[{"id": 1, "title": "Request for Product Quotation", "titleAz": "MÉ™hsul Ã
 (function(){
 function r(q){
 var g=document.getElementById('g');g.innerHTML='';var f=D;
-if(q){var l=q.toLowerCase();f=D.filter(function(t){return t.title.toLowerCase().indexOf(l)>=0||t.titleAz.toLowerCase().indexOf(l)>=0||t.en.toLowerCase().indexOf(l)>=0||t.az.toLowerCase().indexOf(l)>=0})}
+if(q){var l=q.toLowerCase();f=D.filter(function(t){return t.title.toLowerCase().indexOf(l)>=0||t.titleAz.toLowerCase().indexOf(l)>=0})}
 document.querySelector('.stats').textContent=f.length+' template'+(f.length!==1?'s':'');
 if(f.length===0){g.innerHTML='<div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><p>No templates found</p></div>';return}
 f.forEach(function(t){
